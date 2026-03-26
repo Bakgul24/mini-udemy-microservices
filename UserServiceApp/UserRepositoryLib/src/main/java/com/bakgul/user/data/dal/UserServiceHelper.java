@@ -16,7 +16,7 @@ public class UserServiceHelper {
         m_userRepository = userRepository;
     }
 
-    public Optional<User> findUserByEmail(String email) {
+    public Optional<User> findByEmail(String email) {
         return m_userRepository.findByEmail(email);
     }
 
@@ -27,4 +27,5 @@ public class UserServiceHelper {
     public Iterable<User> findByName(String name) {
         return m_userRepository.findByFirstName(name);
     }
+    public boolean existsUserById(int id) { return m_userRepository.existsById(id);}
 }

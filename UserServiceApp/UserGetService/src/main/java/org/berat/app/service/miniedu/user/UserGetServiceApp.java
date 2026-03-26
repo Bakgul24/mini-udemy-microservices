@@ -10,9 +10,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @ComponentScan(basePackages = {"org.berat", "com.bakgul"})
 @EnableJpaRepositories(basePackages = {"org.berat", "com.bakgul"})
 @EntityScan(basePackages = {"org.berat", "com.bakgul"})
-public class UserPostServiceApp {
+public class UserGetServiceApp {
 
 	public static void main(String[] args) {
-		SpringApplication.run(UserPostServiceApp.class, args);
+		SpringApplication.run(UserGetServiceApp.class, args);
 	}
 }
