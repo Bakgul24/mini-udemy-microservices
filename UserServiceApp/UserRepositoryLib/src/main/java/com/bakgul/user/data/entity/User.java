@@ -1,5 +1,6 @@
 package com.bakgul.user.data.entity;
 
+import com.bakgul.user.data.entity.enums.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import java.time.LocalDate;
@@ -28,8 +29,20 @@ public class User {
     @Column(length = 256, nullable = false)
     private String password;
 
+    @Column(length = 20, nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
     @Column(name = "register_date", nullable = false)
     private LocalDate registerDate = LocalDate.now();
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
 
     public int getId() {
         return id;

@@ -2,6 +2,7 @@ package org.berat.app.service.miniedu.user.service;
 
 import com.bakgul.user.data.dal.UserGetServiceHelper;
 import com.bakgul.user.data.entity.User;
+import com.bakgul.user.data.entity.enums.Role;
 import com.miniedu.exception.common.ResourceNotFoundException;
 import com.miniedu.exception.common.InvalidInputException;
 import org.berat.app.service.miniedu.user.dto.UserDTO;
@@ -59,5 +60,15 @@ public class UserService {
         }
         boolean exists = m_userServiceHelper.existsUserById(id);
         return new UserExistsDTO(exists);
+    }
+
+    public UsersDTO findByRole(Role role) {
+        Iterable<User> usersIterable = m_userServiceHelper.findByRole(role);
+
+        var usersDtoList = StreamSupport.stream(usersIterable.spliterator(), false)
+                .map(m_userMapper::toUserDto)
+                .collect(Collectors.toList());
+
+        return m_userMapper.toUsersDto(usersDtoList);
     }
 }

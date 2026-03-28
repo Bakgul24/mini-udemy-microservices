@@ -1,6 +1,7 @@
 package com.bakgul.user.data.dal;
 
 import com.bakgul.user.data.entity.User;
+import com.bakgul.user.data.entity.enums.Role;
 import com.bakgul.user.data.repository.IUserRepository;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -24,4 +25,5 @@ public class UserGetServiceHelper {
         return m_userRepository.findByFirstName(name);
     }
     public boolean existsUserById(int id) { return m_userRepository.existsById(id);}
+    public Iterable<User> findByRole(Role role) { return m_userRepository.findByRole(role); }
 }

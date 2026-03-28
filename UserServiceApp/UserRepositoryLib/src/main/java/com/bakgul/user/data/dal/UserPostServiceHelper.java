@@ -21,6 +21,7 @@ public class UserPostServiceHelper {
         userEntity.setMiddleName(userDto.getMiddleName());
         userEntity.setLastName(userDto.getLastName());
         userEntity.setEmail(userDto.getEmail());
+        userEntity.setRole(userDto.getRole());
         userEntity.setPassword(userDto.getPassword());
     }
 

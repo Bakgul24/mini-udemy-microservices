@@ -1,5 +1,7 @@
 package com.bakgul.user.data.entity.dto;
 
+import com.bakgul.user.data.entity.enums.Role;
+
 import java.time.LocalDate;
 
 public class UserSaveDTO {
@@ -9,8 +11,16 @@ public class UserSaveDTO {
     private String lastName;
     private String email;
     private String password;
+    private Role role;
     private LocalDate registerDate;
 
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
     public int getId() {
         return id;
     }
