@@ -12,4 +12,5 @@ import java.util.Optional;
 public interface IUserRepository extends CrudRepository<User, Integer> {
     Optional<User> findByEmail(String email);
     Iterable<User> findByFirstName(String name);
+    void deleteByEmail(String email);
 }

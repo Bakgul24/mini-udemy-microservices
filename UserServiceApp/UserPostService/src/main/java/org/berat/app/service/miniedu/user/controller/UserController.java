@@ -4,10 +4,7 @@ import com.bakgul.user.data.entity.dto.UserSaveDTO;
 import org.berat.app.service.miniedu.user.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/update/users")
@@ -18,10 +15,17 @@ public class UserController {
         m_userService = userService;
     }
 
-    @PostMapping("user/save")
-    public ResponseEntity<UserSaveDTO> save(@RequestBody UserSaveDTO userSaveDTO) {
-        var user = m_userService.saveUser(userSaveDTO);
+    @PostMapping("/user/save")
+    public ResponseEntity<UserSaveDTO> saveUser(@RequestBody UserSaveDTO userSaveDTO) {
+        UserSaveDTO savedUser = m_userService.saveUser(userSaveDTO);
 
-        return user.getId() != 0 ? ResponseEntity.ok(user) : ResponseEntity.status(HttpStatus.NO_CONTENT).body(user);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
+    }
+
+    @DeleteMapping("/user/delete/email")
+    public ResponseEntity<Void> deleteUserByEmail(@RequestParam("m") String email) {
+        m_userService.deleteUserByEmail(email);
+
+        return ResponseEntity.noContent().build();
     }
 }

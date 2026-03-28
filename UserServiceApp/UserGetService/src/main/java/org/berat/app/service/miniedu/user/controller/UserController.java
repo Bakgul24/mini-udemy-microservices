@@ -4,9 +4,8 @@ import org.berat.app.service.miniedu.user.dto.UserDTO;
 import org.berat.app.service.miniedu.user.dto.UserExistsDTO;
 import org.berat.app.service.miniedu.user.dto.UsersDTO;
 import org.berat.app.service.miniedu.user.service.UserService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 @RestController
 @RequestMapping("api/read/users")
@@ -18,17 +17,23 @@ public class UserController {
     }
 
     @GetMapping("/user/find/email")
-    public Optional<UserDTO> findByEmail(@RequestParam("m") String email) {
-        return m_userService.findByEmail(email);
+    public ResponseEntity<UserDTO> findByEmail(@RequestParam("m") String email) {
+        return m_userService.findByEmail(email)
+                .map(ResponseEntity::ok)
+                .orElseThrow(() ->
+                        new com.miniedu.exception.common.ResourceNotFoundException("User", "email: " + email)
+                );
     }
 
     @GetMapping("/user/id/exists/{id}")
-    public UserExistsDTO existsUserById(@PathVariable int id) {
-        return m_userService.existsUserById(id);
+    public ResponseEntity<UserExistsDTO> existsUserById(@PathVariable int id) {
+        UserExistsDTO result = m_userService.existsUserById(id);
+        return ResponseEntity.ok(result);
     }
 
     @GetMapping("/find/name")
-    public UsersDTO findByName(@RequestParam("n") String name) {
-        return m_userService.findByName(name);
+    public ResponseEntity<UsersDTO> findByName(@RequestParam("n") String name) {
+        UsersDTO result = m_userService.findByName(name);
+        return ResponseEntity.ok(result);
     }
 }

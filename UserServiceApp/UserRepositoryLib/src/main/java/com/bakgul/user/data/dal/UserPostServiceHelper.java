@@ -35,4 +35,8 @@ public class UserPostServiceHelper {
         userDto.setId(userEntity.getId());
         return userDto;
     }
+
+    public void deleteByEmail(String email) {
+        m_userRepository.deleteByEmail(email);
+    }
 }
