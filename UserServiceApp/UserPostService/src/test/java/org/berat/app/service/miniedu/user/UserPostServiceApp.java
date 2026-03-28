@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class UserGetServiceApp {
+public class UserPostServiceApp {
 
 	@Test
     public void contextLoads() {

@@ -7,6 +7,7 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/UserRepositoryLib/pom.xml" />
         <option value="$PROJECT_DIR$/UserGetService/pom.xml" />
+        <option value="$PROJECT_DIR$/UserPostService/pom.xml" />
       </list>
     </option>
     <option name="workspaceImportForciblyTurnedOn" value="true" />

@@ -4,10 +4,7 @@ import org.berat.app.service.miniedu.user.dto.UserDTO;
 import org.berat.app.service.miniedu.user.dto.UserExistsDTO;
 import org.berat.app.service.miniedu.user.dto.UsersDTO;
 import org.berat.app.service.miniedu.user.service.UserService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -20,13 +17,13 @@ public class UserController {
         m_userService = userService;
     }
 
-    @GetMapping("/find/email")
+    @GetMapping("/user/find/email")
     public Optional<UserDTO> findByEmail(@RequestParam("m") String email) {
         return m_userService.findByEmail(email);
     }
 
-    @GetMapping("user/id/exists/{id}")
-    public UserExistsDTO existsUserById(int id) {
+    @GetMapping("/user/id/exists/{id}")
+    public UserExistsDTO existsUserById(@PathVariable int id) {
         return m_userService.existsUserById(id);
     }
 

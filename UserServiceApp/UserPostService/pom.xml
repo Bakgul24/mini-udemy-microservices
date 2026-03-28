@@ -8,10 +8,10 @@
 		<version>1.0.0</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
-	<groupId>UserGetServiceApp</groupId>
-	<artifactId>UserGetServiceApp</artifactId>
+	<groupId>UserPostServiceApp</groupId>
+	<artifactId>UserPostServiceApp</artifactId>
 	<version>1.0.0</version>
-	<name>UserGetServiceApp</name>
+	<name>UserPostServiceApp</name>
 	<properties>
 		<java.version>17</java.version>
 		<spring-cloud.version>2025.1.1</spring-cloud.version>
@@ -22,7 +22,6 @@
 			<artifactId>com-berat-library-miniedu-repository</artifactId>
 			<version>1.0.0</version>
 		</dependency>
-
 	</dependencies>
 
 	<build>

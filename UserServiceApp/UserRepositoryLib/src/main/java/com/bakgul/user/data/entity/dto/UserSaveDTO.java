@@ -1,35 +1,15 @@
-package com.bakgul.user.data.entity;
+package com.bakgul.user.data.entity.dto;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import java.time.LocalDate;
 
-@Entity
-@Table(name = "users")
-public class User {
-    @Id
-    @Column(name = "user_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class UserSaveDTO {
     private int id;
-
-    @Column(length = 100, nullable = false)
     private String firstName;
-
-    @Column(name = "middle_name", length = 100)
     private String middleName;
-
-    @Column(name = "last_name"  ,length = 100, nullable = false)
     private String lastName;
-
-    @Email
-    @Column(length = 100, unique = true, nullable = false)
     private String email;
-
-    @Column(length = 256, nullable = false)
     private String password;
-
-    @Column(name = "register_date", nullable = false)
-    private LocalDate registerDate = LocalDate.now();
+    private LocalDate registerDate;
 
     public int getId() {
         return id;

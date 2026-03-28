@@ -9,19 +9,15 @@ import java.util.Optional;
 
 @Component
 @Lazy
-public class UserServiceHelper {
+public class UserGetServiceHelper {
     private final IUserRepository m_userRepository;
 
-    public UserServiceHelper(IUserRepository userRepository) {
+    public UserGetServiceHelper(IUserRepository userRepository) {
         m_userRepository = userRepository;
     }
 
     public Optional<User> findByEmail(String email) {
         return m_userRepository.findByEmail(email);
-    }
-
-    public User saveUser(User user) {
-        return m_userRepository.save(user);
     }
 
     public Iterable<User> findByName(String name) {

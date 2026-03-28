@@ -5,11 +5,11 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDate;
 
 public class UserDTO {
-        private long id;
-        private String firstName;
-        private String middleName;
-        private String lastName;
-        private String email;
+        public int id;
+        public String firstName;
+        public String middleName;
+        public String lastName;
+        public String email;
         @JsonFormat(pattern = "dd/MM/yyyy", shape = JsonFormat.Shape.STRING)
-        private LocalDate registerDate;
+        public LocalDate registerDate;
 }

@@ -7,12 +7,12 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@ComponentScan({"org.berat", "com.bakgul"})
+@ComponentScan(basePackages = {"org.berat", "com.bakgul"})
 @EnableJpaRepositories(basePackages = {"org.berat", "com.bakgul"})
 @EntityScan(basePackages = {"org.berat", "com.bakgul"})
-public class UserGetServiceApp {
+public class UserPostServiceApp {
 
 	public static void main(String[] args) {
-		SpringApplication.run(UserGetServiceApp.class, args);
+		SpringApplication.run(UserPostServiceApp.class, args);
 	}
 }

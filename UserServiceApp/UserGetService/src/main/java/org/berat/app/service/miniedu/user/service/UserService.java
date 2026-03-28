@@ -1,6 +1,6 @@
 package org.berat.app.service.miniedu.user.service;
 
-import com.bakgul.user.data.dal.UserServiceHelper;
+import com.bakgul.user.data.dal.UserGetServiceHelper;
 import com.bakgul.user.data.entity.User;
 import org.berat.app.service.miniedu.user.dto.UserDTO;
 import org.berat.app.service.miniedu.user.dto.UserExistsDTO;
@@ -15,12 +15,12 @@ import java.util.stream.StreamSupport;
 
 @Service
 public class UserService {
-    private final UserServiceHelper m_userServiceHelper;
+    private final UserGetServiceHelper m_userServiceHelper;
     private final IUserMapper m_userMapper;
 
-    public UserService(UserServiceHelper userServiceHelper, IUserMapper mUserMapper) {
+    public UserService(UserGetServiceHelper userServiceHelper, IUserMapper userMapper) {
         m_userServiceHelper = userServiceHelper;
-        m_userMapper = mUserMapper;
+        m_userMapper = userMapper;
     }
 
     public Optional<UserDTO> findByEmail(String email) {
@@ -30,7 +30,7 @@ public class UserService {
     public UsersDTO findByName(String name) {
         Iterable<User> usersIterable = m_userServiceHelper.findByName(name);
 
-        List<UserDTO> usersDtoList = StreamSupport.stream(usersIterable.spliterator(), false)
+        var usersDtoList = StreamSupport.stream(usersIterable.spliterator(), false)
                 .map(m_userMapper::toUserDto)
                 .collect(Collectors.toList());
 
