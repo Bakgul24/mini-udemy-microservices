@@ -18,7 +18,6 @@ public class UserController {
     @PostMapping("/user/save")
     public ResponseEntity<UserSaveDTO> saveUser(@RequestBody UserSaveDTO userSaveDTO) {
         UserSaveDTO savedUser = m_userService.saveUser(userSaveDTO);
-        System.out.print(userSaveDTO.getRole());
         return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
     }
 

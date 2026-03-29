@@ -2,18 +2,28 @@ package org.berat.app.service.miniedu.user.service;
 
 import com.bakgul.user.data.dal.UserPostServiceHelper;
 import com.bakgul.user.data.entity.dto.UserSaveDTO;
+import com.bakgul.user.data.entity.enums.Role;
 import com.miniedu.exception.common.InvalidInputException;
 import com.miniedu.exception.common.DuplicateResourceException;
 import com.miniedu.exception.common.ResourceNotFoundException;
 import jakarta.transaction.Transactional;
+import org.berat.app.service.miniedu.user.event.TeacherCreatedEvent;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
+    @Value(("${kafka.topic}"))
+    private String kafkaTopic;
     private final UserPostServiceHelper m_userServiceHelper;
 
-    public UserService(UserPostServiceHelper userServiceHelper) {
-        m_userServiceHelper = userServiceHelper;
+    private final KafkaTemplate<String, TeacherCreatedEvent> kafkaTemplate;
+
+    public UserService(UserPostServiceHelper userServiceHelper,
+                       KafkaTemplate<String, TeacherCreatedEvent> kafkaTemplate) {
+        this.m_userServiceHelper = userServiceHelper;
+        this.kafkaTemplate = kafkaTemplate;
     }
 
     public UserSaveDTO saveUser(UserSaveDTO userDto) {
@@ -34,7 +44,20 @@ public class UserService {
         }
 
         try {
-            return m_userServiceHelper.saveUser(userDto);
+            UserSaveDTO savedUser = m_userServiceHelper.saveUser(userDto);
+
+            if (savedUser.getRole() == Role.TEACHER) {
+                TeacherCreatedEvent event = new TeacherCreatedEvent();
+                event.setUserId(savedUser.getId());
+                event.setFirstName(savedUser.getFirstName());
+                event.setLastName(savedUser.getLastName());
+
+                kafkaTemplate.send(kafkaTopic, event);
+                System.out.println("TeacherCreatedEvent published for userId: " + savedUser.getId());
+            }
+
+            return savedUser;
+
         } catch (Exception ex) {
             if (ex.getMessage() != null && ex.getMessage().contains("email")) {
                 throw DuplicateResourceException.withEmail("User", userDto.getEmail());

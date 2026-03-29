@@ -10,16 +10,14 @@ public class Teacher {
     @Column(name = "teacher_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     @Column(name = "user_id", nullable = false)
     private int userId;
-
-    @Column(length = 100, nullable = false)
+    @Column(length = 100)
     private String subject;
-
-    @Column(name = "experience_years", nullable = false)
+    @Column(name = "experience_years")
     private int experienceYears;
-
+    @Column
+    private int totalCourses;
     @Column(name = "created_at", nullable = false)
     private LocalDate createdAt = LocalDate.now();
 
@@ -61,5 +59,13 @@ public class Teacher {
 
     public void setCreatedAt(LocalDate createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public int getTotalCourses() {
+        return totalCourses;
+    }
+
+    public void setTotalCourses(int totalCourses) {
+        this.totalCourses = totalCourses;
     }
 }
