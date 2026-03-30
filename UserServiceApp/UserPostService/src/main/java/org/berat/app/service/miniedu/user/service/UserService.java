@@ -49,6 +49,8 @@ public class UserService {
             if (savedUser.getRole() == Role.TEACHER) {
                 TeacherCreatedEvent event = new TeacherCreatedEvent();
                 event.setUserId(savedUser.getId());
+                event.setEmail(savedUser.getEmail());
+                event.setMiddleName(savedUser.getMiddleName());
                 event.setFirstName(savedUser.getFirstName());
                 event.setLastName(savedUser.getLastName());
 

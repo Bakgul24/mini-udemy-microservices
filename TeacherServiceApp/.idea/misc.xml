@@ -7,6 +7,8 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/TeacherRepositoryLib/pom.xml" />
         <option value="$PROJECT_DIR$/TeacherConsumerService/pom.xml" />
+        <option value="$PROJECT_DIR$/TeacherGetService/pom.xml" />
+        <option value="$PROJECT_DIR$/TeacherCommandService/pom.xml" />
       </list>
     </option>
     <option name="workspaceImportForciblyTurnedOn" value="true" />

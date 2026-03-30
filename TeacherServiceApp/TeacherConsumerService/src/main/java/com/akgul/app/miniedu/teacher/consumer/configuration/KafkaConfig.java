@@ -2,7 +2,6 @@ package com.akgul.app.miniedu.teacher.consumer.configuration;
 
 import com.akgul.app.miniedu.teacher.consumer.event.TeacherCreatedEvent;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
-import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
@@ -37,7 +36,7 @@ public class KafkaConfig {
 
         props.put(JsonDeserializer.TRUSTED_PACKAGES, "com.akgul.app.miniedu.teacher.consumer.event");
         props.put(JsonDeserializer.VALUE_DEFAULT_TYPE, "com.akgul.app.miniedu.teacher.consumer.event.TeacherCreatedEvent");
-        props.put(JsonDeserializer.USE_TYPE_INFO_HEADERS, false); // Header zorunluluğunu kaldırır
+        props.put(JsonDeserializer.USE_TYPE_INFO_HEADERS, false);
 
         return new DefaultKafkaConsumerFactory<>(props);
     }

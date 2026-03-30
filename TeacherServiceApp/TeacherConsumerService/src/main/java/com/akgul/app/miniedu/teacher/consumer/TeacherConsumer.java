@@ -15,10 +15,14 @@ public class TeacherConsumer {
     }
 
     @KafkaListener(topics = "${kafka.topic}", groupId = "teacher-group")
-    public void consume(TeacherCreatedEvent event) {
+    public Teacher consume(TeacherCreatedEvent event) {
         Teacher teacher = new Teacher();
         teacher.setUserId(event.getUserId());
+        teacher.setEmail(event.getEmail());
+        teacher.setLastName(event.getLastName());
+        teacher.setMiddleName(event.getMiddleName());
+        teacher.setFirstName(event.getFirstName());
 
-        m_teacherPostServiceHelper.save(teacher);
+        return m_teacherPostServiceHelper.save(teacher);
     }
 }

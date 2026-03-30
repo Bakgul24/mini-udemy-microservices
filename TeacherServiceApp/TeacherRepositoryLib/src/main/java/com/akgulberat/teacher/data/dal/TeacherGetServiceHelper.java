@@ -23,4 +23,8 @@ public class TeacherGetServiceHelper {
     public Optional<Teacher> findById(int id) {
         return m_teacherRepository.findById(id);
     }
+
+    public Iterable<Teacher> findByExperienceYears(int experienceYears) {
+        return m_teacherRepository.findByExperienceYears(experienceYears);
+    }
 }

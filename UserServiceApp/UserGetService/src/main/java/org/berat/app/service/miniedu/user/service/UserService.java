@@ -16,11 +16,11 @@ import java.util.stream.StreamSupport;
 
 @Service
 public class UserService {
-    private final UserGetServiceHelper m_userServiceHelper;
+    private final UserGetServiceHelper m_userGetServiceHelper;
     private final IUserMapper m_userMapper;
 
-    public UserService(UserGetServiceHelper userServiceHelper, IUserMapper userMapper) {
-        m_userServiceHelper = userServiceHelper;
+    public UserService(UserGetServiceHelper userGetServiceHelper, IUserMapper userMapper) {
+        m_userGetServiceHelper = userGetServiceHelper;
         m_userMapper = userMapper;
     }
 
@@ -30,7 +30,7 @@ public class UserService {
             throw InvalidInputException.nullField("email");
         }
 
-        return m_userServiceHelper.findByEmail(email)
+        return m_userGetServiceHelper.findByEmail(email)
                 .map(m_userMapper::toUserDto)
                 .or(() -> {
                     throw ResourceNotFoundException.byEmail("User", email);
@@ -42,7 +42,7 @@ public class UserService {
             throw InvalidInputException.nullField("name");
         }
 
-        Iterable<User> usersIterable = m_userServiceHelper.findByName(name);
+        Iterable<User> usersIterable = m_userGetServiceHelper.findByName(name);
 
         var usersDtoList = StreamSupport.stream(usersIterable.spliterator(), false)
                 .map(m_userMapper::toUserDto)
@@ -58,12 +58,12 @@ public class UserService {
         if (id <= 0) {
             throw InvalidInputException.invalidRange("id", "greater than 0");
         }
-        boolean exists = m_userServiceHelper.existsUserById(id);
+        boolean exists = m_userGetServiceHelper.existsUserById(id);
         return new UserExistsDTO(exists);
     }
 
     public UsersDTO findByRole(Role role) {
-        Iterable<User> usersIterable = m_userServiceHelper.findByRole(role);
+        Iterable<User> usersIterable = m_userGetServiceHelper.findByRole(role);
 
         var usersDtoList = StreamSupport.stream(usersIterable.spliterator(), false)
                 .map(m_userMapper::toUserDto)
