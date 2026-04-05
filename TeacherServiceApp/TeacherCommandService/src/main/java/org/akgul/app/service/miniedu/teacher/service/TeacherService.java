@@ -33,6 +33,7 @@ public class TeacherService {
     }
     @Transactional
     public void deleteTeacherById(DeleteTeacherDTO deleteTeacher) {
+        System.out.print(deleteTeacher.getId());
         m_teacherCommandServiceHelper.deleteTeacherById(deleteTeacher.getId());
     }
 }

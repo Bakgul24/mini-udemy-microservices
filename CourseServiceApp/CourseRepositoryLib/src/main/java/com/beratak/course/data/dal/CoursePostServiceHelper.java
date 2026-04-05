@@ -23,4 +23,9 @@ public class CoursePostServiceHelper {
         m_courseRepository.save(m_courseMapper.toCourse(courseDto));
         return courseDto;
     }
+
+    @Transactional
+    public void deleteByTeacherId(int teacherId) {
+        m_courseRepository.deleteByTeacherId(teacherId);
+    }
 }

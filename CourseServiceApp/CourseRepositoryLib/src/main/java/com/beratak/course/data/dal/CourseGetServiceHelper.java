@@ -5,6 +5,7 @@ import com.beratak.course.data.repository.ICourseRepository;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -26,5 +27,9 @@ public class CourseGetServiceHelper {
 
     public Iterable<Course> findAllCoursesByTeacherIdAndActive(int teacherId, boolean active) {
         return m_courseRepository.findAllByTeacherIdAndActive(teacherId, active);
+    }
+
+    public List<Integer> findDistinctTeacherIds() {
+        return m_courseRepository.findDistinctTeacherIds();
     }
 }

@@ -10,22 +10,40 @@
 		<version>1.0.0</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
-
-	<groupId>CoursPostServiceApp</groupId>
 	<artifactId>CoursePostServiceApp</artifactId>
 	<version>1.0.0</version>
+	<name>CoursePostServiceApp</name>
 
 	<properties>
 		<java.version>17</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<org.mapstruct.version>1.6.3</org.mapstruct.version>
 	</properties>
-
-	<dependencies>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>2025.0.0</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>	<dependencies>
 		<dependency>
 			<groupId>com.beratak</groupId>
 			<artifactId>com-berat-library-miniedu-course-repository</artifactId>
 			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 

@@ -1,9 +1,12 @@
 package org.akgul.app.service.miniedu.teacher.service;
 
 import com.akgulberat.teacher.data.dal.TeacherGetServiceHelper;
+import org.akgul.app.service.miniedu.teacher.dto.TeacherExistsDTO;
 import org.akgul.app.service.miniedu.teacher.dto.TeachersDTO;
 import org.akgul.app.service.miniedu.teacher.mapper.ITeacherMapper;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -25,5 +28,12 @@ public class TeacherService {
                 .collect(Collectors.toList());
 
         return m_teacherMapper.toUsersDto(teacherList);
+    }
+
+    public TeacherExistsDTO existsByTeacherId(int id) {
+        TeacherExistsDTO teacherExistsDTO = new TeacherExistsDTO();
+        teacherExistsDTO.setExists(m_getServiceHelper.existsByTeacherId(id));
+
+        return teacherExistsDTO;
     }
 }
