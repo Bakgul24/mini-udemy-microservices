@@ -10,9 +10,9 @@
 		<version>1.0.0</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
-	<artifactId>EnrollmentGetService</artifactId>
+	<artifactId>EnrollmentPostService</artifactId>
 	<version>1.0.0</version>
-	<name>EnrollmentGetService</name>
+	<name>EnrollmentPostService</name>
 
 	<properties>
 		<java.version>17</java.version>
