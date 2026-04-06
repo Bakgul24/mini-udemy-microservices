@@ -1,7 +1,5 @@
 package org.berat.app.service.miniedu.user.event;
 
-import java.time.LocalDate;
-
 public class TeacherCreatedEvent {
     private int userId;
     private String firstName;
