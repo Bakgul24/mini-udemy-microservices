@@ -22,6 +22,7 @@ public class EnrollmentPostServiceHelper {
 
     @Transactional
     public void deleteByCourseId(int courseId){
+        System.out.print("--------------------"+courseId);
         m_enrollmentRepository.deleteByCourseId(courseId);
     }
 
@@ -38,7 +39,6 @@ public class EnrollmentPostServiceHelper {
     }
 
     private void updateEnrollmentFromDto(EnrollmentSaveDTO enrollmentSaveDTO, Enrollment enrollmentEntity) {
-        enrollmentEntity.setId(enrollmentSaveDTO.getId());
         enrollmentEntity.setUserId(enrollmentSaveDTO.getUserId());
         enrollmentEntity.setCourseId(enrollmentSaveDTO.getCourseId());
         enrollmentEntity.setEnrollDate(enrollmentSaveDTO.getEnrollDate());
